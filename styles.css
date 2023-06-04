@@ -1,0 +1,79 @@
+body {
+  background-color: black;
+  color: white;
+}
+
+h1, h2, h3 {
+  color: orange;
+}
+
+p {
+  color: white;
+}
+
+.container {
+  background-color: white;
+  padding: 20px;
+}
+
+.button {
+  background-color: orange;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: blue;
+}
+
+.tablero {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+}
+
+.celda {
+  width: 100px;
+  height: 100px;
+  background-color: orange;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.celda.jugable {
+  background-color: blue;
+}
+
+.modal {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+}
+
+.modal-button {
+  background-color: orange;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-button:hover {
+  background-color: blue;
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Juego de Puntuaciones</title>
+</head>
+<body>
+    <script>
+        // Al cargar la página
+        window.onload = function() {
+            // Comprobar si se está jugando una partida
+            var partidaGuardada = sessionStorage.getItem('partida');
+            if (partidaGuardada) {
+                // Redireccionar a juego.html si hay una partida en curso
+                window.location.href = 'juego.html';
+            }
+            
+            // Obtener las puntuaciones almacenadas en sessionStorage
+            var puntuaciones = sessionStorage.getItem('puntuaciones');
+            
+            // Mostrar la tabla de clasificación
+            var tablaClasificacion = document.getElementById('tabla-clasificacion');
+            if (puntuaciones) {
+                // Si hay puntuaciones almacenadas
+                puntuaciones = JSON.parse(puntuaciones);
+                mostrarPuntuaciones(puntuaciones);
+            } else {
+                // Si no hay puntuaciones almacenadas
+                mostrarMensajeSinPuntuaciones();
+            }
+            
+            function mostrarPuntuaciones(puntuaciones) {
+                // Ordenar las puntuaciones de mayor a menor
+                puntuaciones.sort(function(a, b) {
+                    return b.puntuacion - a.puntuacion;
+                });
+                
+                // Mostrar las 10 puntuaciones más altas
+                var maxPuntuaciones = Math.min(puntuaciones.length, 10);
+                for (var i = 0; i < maxPuntuaciones; i++) {
+                    var posicion = i + 1;
+                    var jugador = puntuaciones[i].jugador;
+                    var puntuacion = puntuaciones[i].puntuacion;
+                    
+                    // Crear una fila en la tabla
+                    var fila = tablaClasificacion.insertRow();
+                    
+                    // Insertar celdas en la fila
+                    var celdaPosicion = fila.insertCell(0);
+                    var celdaJugador = fila.insertCell(1);
+                    var celdaPuntuacion = fila.insertCell(2);
+                    
+                    // Establecer los valores en las celdas
+                    celdaPosicion.innerHTML = posicion;
+                    celdaJugador.innerHTML = jugador;
+                    celdaPuntuacion.innerHTML = puntuacion;
+                }
+            }
+            
+            function mostrarMensajeSinPuntuaciones() {
+                var mensaje = document.getElementById('mensaje');
+                mensaje.innerHTML = 'Todavía no hay puntuaciones guardadas. ¡¡¡Sé el primero en conseguir una puntuación máxima!!!';
+            }
+            
+            // Obtener el formulario de identificación de jugadores
+            var formulario = document.getElementById('formulario-jugadores');
+            
+            // Manejar el evento de enviar el formulario
+            formulario.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                // Obtener los nombres de los jugadores
+                var jugador1 = document.getElementById('jugador1').value;
+                var jugador2 = document.getElementById('jugador2').value;
+                
+                // Validar que los campos no estén vacíos
+                if (jugador1 !== '' && jugador2 !== '') {
+                    // Guardar los nombres de los jugadores en sessionStorage
+                    var jugadores = {
+                        jugador1: jugador1,
+                        jugador2: jugador2
+                    };
+                    sessionStorage.setItem('jugadores', JSON.stringify(jugadores));
+                    
+                    // Redireccionar a juego.html
+                    window.location.href = 'juego.html';
+                }
+            });
+        };
+    </script>
+    
+    <h1>Juego de Puntuaciones</h1>
+    
+    <h2>Clasificación de las 10 puntuaciones más altas del día</h2>
+    <table id="tabla-clasificacion">
+        <thead>
+            <tr>
+                <th>Posición</th>
+                <th>Jugador</th>
+                <th>Puntuación</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    
+    <p id="mensaje"></p>
+    
+    <h2>Formulario de identificación de jugadores</h2>
+    <form id="formulario-jugadores">
+        <label for="jugador1">Jugador 1:</label>
+        <input type="text" id="jugador1" required>
+        <br>
+        <label for="jugador2">Jugador 2:</label>
+        <input type="text" id="jugador2" required>
+        <br>
+        <button type="submit">Comenzar juego</button>
+        <button type="reset">Limpiar campos</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NumTris - Juego</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="NumTris Logo">
+    <h1>NumTris</h1>
+    <p>Juego de números y estrategia</p>
+  </header>
+
+  <main>
+    <section id="player-form">
+      <h2>Identificación de Jugadores</h2>
+      <form id="game-form">
+        <div class="input-group">
+          <label for="player1">Jugador 1:</label>
+          <input type="text" id="player1" required>
+        </div>
+        <div class="input-group">
+          <label for="player2">Jugador 2:</label>
+          <input type="text" id="player2" required>
+        </div>
+        <div class="button-group">
+          <button type="submit">Comenzar juego</button>
+          <button type="button" id="reset-button">Limpiar campos</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 NumTris | <a href="acerca.html">Acerca de</a></p>
+  </footer>
+
+  <script src="index.js"></script>
+</body>
+</html>

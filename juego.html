@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="barra-opciones">
+        <button onclick="terminarPartida()">Terminar partida</button>
+        <button onclick="mostrarAyuda()">Ayuda</button>
+    </div>
+
+    <div class="marcador">
+        <h2>Marcador</h2>
+        <!-- Aquí se mostrarán los nombres y puntuaciones de los jugadores -->
+    </div>
+
+    <canvas id="tablero" width="400" height="400"></canvas>
+
+    <div class="numeros-disponibles">
+        <h2>Números disponibles</h2>
+        <!-- Aquí se mostrarán los números disponibles -->
+    </div>
+
+    <div id="mensajeModal">
+        <!-- Contenido del mensaje modal -->
+    </div>
+
+    <script src="juego.js"></script>
+</body>
+</html>
